@@ -1,6 +1,0 @@
-@DePoisty.RecommendationService.API_HostAddress = http://localhost:5189
-
-GET {{DePoisty.RecommendationService.API_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
