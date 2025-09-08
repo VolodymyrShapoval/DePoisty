@@ -4,7 +4,7 @@ namespace DePoisty.RestaurantFoodsService.Core.Models
 {
     public class Restaurant
     {
-        public required string Id { get; set; }
+        public required Guid Id { get; set; }
         public required string Name { get; set; }
         public required string Address { get; set; }
         public required string Website { get; set; }
