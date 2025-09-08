@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DePoisty.RestaurantFoodsService.Core.Models
+﻿namespace DePoisty.RestaurantFoodsService.Core.Models
 {
     public class Restaurant
     {
