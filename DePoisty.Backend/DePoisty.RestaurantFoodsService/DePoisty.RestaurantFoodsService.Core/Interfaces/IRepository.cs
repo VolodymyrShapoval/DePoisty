@@ -1,11 +1,4 @@
-﻿using DePoisty.RestaurantFoodsService.Core.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DePoisty.RestaurantFoodsService.Core.Interfaces
+﻿namespace DePoisty.RestaurantFoodsService.Core.Interfaces
 {
     public interface IRepository<T>
     {
