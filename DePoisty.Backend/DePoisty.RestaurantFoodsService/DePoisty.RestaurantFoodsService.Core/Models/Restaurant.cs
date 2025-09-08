@@ -9,5 +9,7 @@
         public required decimal QualityRating { get; set; }
 
         public ICollection<Dish> Dishes { get; set; } = new List<Dish>();
+
+        public RestaurantMeta RestaurantMeta { get; set; } = null!;
     }
 }
