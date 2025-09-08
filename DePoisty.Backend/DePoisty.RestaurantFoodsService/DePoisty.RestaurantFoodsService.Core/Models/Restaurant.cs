@@ -1,4 +1,6 @@
-﻿namespace DePoisty.RestaurantFoodsService.Core.Models
+﻿using System.Collections.Generic;
+
+namespace DePoisty.RestaurantFoodsService.Core.Models
 {
     public class Restaurant
     {
@@ -6,7 +8,7 @@
         public required string Name { get; set; }
         public required string Address { get; set; }
         public required string Website { get; set; }
-        public required float QualityRating { get; set; }
+        public required decimal QualityRating { get; set; }
 
         public ICollection<Dish> Dishes { get; set; } = new List<Dish>();
     }
