@@ -2,12 +2,14 @@
 {
     public class Dish
     {
-        public required Guid Id { get; set; }
-        public required Guid CategoryId { get; set; }
+        public Guid Id { get; set; }
+        public Guid RestaurantId { get; set; }
+        public Guid? CategoryId { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public decimal Price { get; set; }
+        public decimal Weight { get; set; }
+
+        public Restaurant Restaurant { get; set; } = null!;
         public Category Category { get; set; } = null!;
-        public required string Name { get; set; }
-        public required decimal Price { get; set; }
-        public required decimal Weight { get; set; }
-        public string Description { get; set; } = string.Empty;
     }
 }

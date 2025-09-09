@@ -4,10 +4,11 @@ namespace DePoisty.RestaurantFoodsService.Core.Models
 {
     public class RestaurantMeta
     {
-        public required Guid Id { get; set; }
-        public required Guid RestaurantId { get; set; }
+        public Guid Id { get; set; }
+        public Guid RestaurantId { get; set; }
+        public ParsingType ParsingType { get; set; }
+        public string ParsingClassName { get; set; } = string.Empty;
+
         public Restaurant Restaurant { get; set; } = null!;
-        public required ParsingType ParsingType { get; set; }
-        public required string ParsingClassName { get; set; }
     }
 }
