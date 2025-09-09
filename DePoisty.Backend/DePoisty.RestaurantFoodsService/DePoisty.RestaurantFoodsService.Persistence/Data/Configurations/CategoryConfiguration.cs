@@ -15,8 +15,7 @@ namespace DePoisty.RestaurantFoodsService.Persistence.Data.Configurations
             builder.HasMany(c => c.Dishes)
                 .WithOne(d => d.Category)
                 .HasForeignKey(d => d.CategoryId)
-                .OnDelete(DeleteBehavior.SetNull)
-                .IsRequired();
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace DePoisty.RestaurantFoodsService.Persistence.Data.Configurations
 
             builder.HasOne(r => r.RestaurantMeta)
                 .WithOne(m => m.Restaurant)
-                .HasForeignKey<RestaurantMeta>(m => m.Id)
+                .HasForeignKey<RestaurantMeta>(m => m.RestaurantId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
         }
