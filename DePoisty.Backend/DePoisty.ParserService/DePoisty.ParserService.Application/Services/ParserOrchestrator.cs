@@ -20,7 +20,6 @@ namespace DePoisty.ParserService.Application.Services
         public IEnumerable<AcceptParsingInfo> RunParsers(ParseRestaurantsRequest parseRestaurantsRequest, Action<UpdateRestaurantDto> onComplete)
         {
             var listInfos = new List<AcceptParsingInfo>();
-            var tasks = new List<Task>();
             foreach (var restaurant in parseRestaurantsRequest.Restaurants)
             {
                 var parser = GetRestaurantParserByClassName(restaurant.RestaurantMeta.ParsingClassName);
@@ -39,7 +38,7 @@ namespace DePoisty.ParserService.Application.Services
                         ParsingClassName = restaurant.RestaurantMeta.ParsingClassName,
                         IsAccepted = true
                     });
-                    Task.Run(async () =>
+                    _ = Task.Run(async () =>
                     {
                         var restaurantInfo = await parser.ParseRestaurantInfoAsync(restaurant.Website);
                         var dishesInfos = await parser.ParseDishInfosAsync(restaurant.Website);
