@@ -9,6 +9,7 @@ namespace DePoisty.ParserService.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IParserOrchestrator, ParserOrchestrator>();
+            services.AddSingleton<IBackgroundTaskQueue, BackgroundTaskQueue>();
 
             return services;
         }

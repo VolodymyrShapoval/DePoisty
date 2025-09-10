@@ -5,7 +5,6 @@ namespace DePoisty.ParserService.Application.Interfaces
 {
     public interface IParserOrchestrator
     {
-        IRestaurantParser? GetRestaurantParserByClassName(string className);
         IEnumerable<AcceptParsingInfo> RunParsers(ParseRestaurantsRequest parseRestaurantsRequest, Func<UpdateRestaurantDto, Task> onComplete);
     }
 }

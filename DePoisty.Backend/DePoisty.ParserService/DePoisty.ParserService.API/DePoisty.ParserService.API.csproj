@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DePoisty.ParserService.Application\DePoisty.ParserService.Application.csproj" />
+    <ProjectReference Include="..\DePoisty.ParserService.Infrastructure\DePoisty.ParserService.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
