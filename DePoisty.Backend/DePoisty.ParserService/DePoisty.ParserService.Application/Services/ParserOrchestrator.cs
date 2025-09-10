@@ -40,26 +40,33 @@ namespace DePoisty.ParserService.Application.Services
                     });
                     _ = Task.Run(async () =>
                     {
-                        var restaurantInfo = await parser.ParseRestaurantInfoAsync(restaurant.Website);
-                        var dishesInfos = await parser.ParseDishInfosAsync(restaurant.Website);
-
-                        var updateRestaurant = new UpdateRestaurantDto
+                        try
                         {
-                            Id = restaurant.Id,
-                            Website = restaurant.Website,
-                            Name = restaurantInfo.Name,
-                            Address = restaurantInfo.Address,
-                            QualityRating = restaurantInfo.QualityRating,
-                            Dishes = dishesInfos.Select(dish => new UpdateDishDto
+                            var restaurantInfo = await parser.ParseRestaurantInfoAsync(restaurant.Website);
+                            var dishesInfos = await parser.ParseDishInfosAsync(restaurant.Website);
+
+                            var updateRestaurant = new UpdateRestaurantDto
                             {
-                                CategoryName = dish.CategoryName,
-                                Name = dish.Name,
-                                Price = dish.Price,
-                                Weight = dish.Weight
-                            })
-                            .ToList()
-                        };
-                        onComplete.Invoke(updateRestaurant); //TODO: review the logic
+                                Id = restaurant.Id,
+                                Website = restaurant.Website,
+                                Name = restaurantInfo.Name,
+                                Address = restaurantInfo.Address,
+                                QualityRating = restaurantInfo.QualityRating,
+                                Dishes = dishesInfos.Select(dish => new UpdateDishDto
+                                {
+                                    CategoryName = dish.CategoryName,
+                                    Name = dish.Name,
+                                    Price = dish.Price,
+                                    Weight = dish.Weight
+                                })
+                                .ToList()
+                            };
+                            onComplete.Invoke(updateRestaurant); //TODO: review the logic
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.Error.WriteLine($"Exception in background parser task for '{restaurant.RestaurantMeta.ParsingClassName}': {ex}");
+                        }
                     });
                 }
             }
