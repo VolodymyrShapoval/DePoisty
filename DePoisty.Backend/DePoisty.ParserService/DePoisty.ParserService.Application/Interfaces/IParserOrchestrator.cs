@@ -1,5 +1,4 @@
 ﻿using DePoisty.ParserService.Application.Dtos;
-using DePoisty.ParserService.Core.Interfaces;
 
 namespace DePoisty.ParserService.Application.Interfaces
 {
