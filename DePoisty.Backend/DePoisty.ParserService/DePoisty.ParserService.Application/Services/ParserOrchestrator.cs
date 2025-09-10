@@ -17,7 +17,7 @@ namespace DePoisty.ParserService.Application.Services
 
             return parser;
         }
-        public IEnumerable<AcceptParsingInfo> RunParsers(ParseRestaurantsRequest parseRestaurantsRequest, Action<UpdateRestaurantDto> onComplete)
+        public IEnumerable<AcceptParsingInfo> RunParsers(ParseRestaurantsRequest parseRestaurantsRequest, Func<UpdateRestaurantDto, Task> onComplete)
         {
             var listInfos = new List<AcceptParsingInfo>();
             foreach (var restaurant in parseRestaurantsRequest.Restaurants)
