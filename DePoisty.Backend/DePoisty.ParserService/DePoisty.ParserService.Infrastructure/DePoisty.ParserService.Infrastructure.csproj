@@ -7,9 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.9" />
     <PackageReference Include="Selenium.Support" Version="4.35.0" />
     <PackageReference Include="Selenium.WebDriver" Version="4.35.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="140.0.7339.8000" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DePoisty.ParserService.Application\DePoisty.ParserService.Application.csproj" />
   </ItemGroup>
 
 </Project>
