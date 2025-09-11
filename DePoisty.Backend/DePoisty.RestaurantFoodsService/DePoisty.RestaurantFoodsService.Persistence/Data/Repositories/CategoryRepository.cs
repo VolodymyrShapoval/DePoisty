@@ -5,44 +5,43 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DePoisty.RestaurantFoodsService.Persistence.Data.Repositories
 {
-    public class DishRepository : IRepository<Dish>
+    public class CategoryRepository : IRepository<Category>
     {
         private readonly AppDbContext _context;
-        public DishRepository(AppDbContext context) => _context = context;
+        public CategoryRepository(AppDbContext context) => _context = context;
 
-        public async Task<RepositoryResult> AddAsync(Dish entity)
+        public async Task<RepositoryResult> AddAsync(Category entity)
         {
-            await _context.Dishes.AddAsync(entity);
+            await _context.Categories.AddAsync(entity);
             var result = await _context.SaveChangesAsync();
             return result > 0 ? RepositoryResult.Success() : RepositoryResult.Failure("Cannot add the entity to DB");
         }
 
-        public async Task<RepositoryResult> DeleteAsync(Dish entity)
+        public async Task<RepositoryResult> DeleteAsync(Category entity)
         {
-            _context.Dishes.Remove(entity);
+            _context.Categories.Remove(entity);
             var result = await _context.SaveChangesAsync();
             return result > 0 ? RepositoryResult.Success() : RepositoryResult.Failure("Cannot delete the entity from DB");
         }
 
-        public async Task<IEnumerable<Dish>> GetAllAsync()
+        public async Task<IEnumerable<Category>> GetAllAsync()
         {
-            return await _context.Dishes.ToListAsync();
+            return await _context.Categories.ToListAsync();
         }
 
-        public async Task<Dish?> GetByIdAsync(Guid id)
+        public async Task<Category?> GetByIdAsync(Guid id)
         {
-            return await _context.Dishes.FirstOrDefaultAsync(d => d.Id == id);
+            return await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public async Task<RepositoryResult> UpdateAsync(Dish entity)
+        public async Task<RepositoryResult> UpdateAsync(Category entity)
         {
-            var oldEntity = await _context.Dishes.FirstOrDefaultAsync(d => d.Id == entity.Id);
-            if(oldEntity == null)
+            var oldEntity = await _context.Categories.FirstOrDefaultAsync(c =>  c.Id == entity.Id);
+            if (oldEntity == null)
             {
                 return RepositoryResult.Failure("Cannot find the entity to update");
             }
-
-            _context.Dishes.Update(entity);
+            _context.Categories.Update(entity);
             var result = await _context.SaveChangesAsync();
             return result > 0 ? RepositoryResult.Success() : RepositoryResult.Failure("Cannot update the entity");
         }
