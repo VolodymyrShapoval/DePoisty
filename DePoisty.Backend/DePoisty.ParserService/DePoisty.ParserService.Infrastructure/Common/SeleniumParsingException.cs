@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 
 namespace DePoisty.ParserService.Infrastructure.Common
 {
-    public class SeleniumParsingException: Exception
+    public class SeleniumParsingException : Exception
     {
         public SeleniumParsingException() : base() { }
 

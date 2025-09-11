@@ -7,6 +7,7 @@ namespace DePoisty.ParserService.Infrastructure.Services.Parsers
     public abstract class BaseParser : IRestaurantParser, IDisposable
     {
         private readonly SeleniumWrapper _seleniumWrapper;
+        protected SeleniumWrapper SeleniumWrapper { get { return _seleniumWrapper; } }
         public string Url { get; set; } = string.Empty;
         public BaseParser()
         {

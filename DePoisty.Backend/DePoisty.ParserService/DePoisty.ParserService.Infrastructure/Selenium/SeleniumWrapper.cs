@@ -36,8 +36,15 @@ namespace DePoisty.ParserService.Infrastructure.Selenium
         }
         public bool IsElementVisible(string locator)
         {
-            var element = _driver.FindElement(By.XPath(locator));
-            return element?.Displayed ?? false;
+            try
+            {
+                var element = _driver.FindElement(By.XPath(locator));
+                return element?.Displayed ?? false;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
         }
         public void AssertElementIsVisible(string locator)
         {
@@ -47,6 +54,8 @@ namespace DePoisty.ParserService.Infrastructure.Selenium
                 {
                     return;
                 }
+
+                Thread.Sleep(1000);
             }
 
             throw new SeleniumParsingException("Element is not visible");
@@ -84,7 +93,7 @@ namespace DePoisty.ParserService.Infrastructure.Selenium
                     case SeleniumParsingException _:
                         throw new SeleniumParsingException($"Couldn't select the element `{selectLocator}` with option '{optionText}'! Error message: {ex.Message}");
                     default:
-                        throw new Exception($"Couldn't click on the element `{selectLocator}` with option '{optionText}'! Unknown error with message: {ex.Message}");
+                        throw new Exception($"Couldn't select the element `{selectLocator}` with option '{optionText}'! Unknown error with message: {ex.Message}");
                 }
             }
         }
