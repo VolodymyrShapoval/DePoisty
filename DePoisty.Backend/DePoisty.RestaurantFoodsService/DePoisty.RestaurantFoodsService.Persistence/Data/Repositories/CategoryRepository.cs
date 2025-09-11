@@ -36,7 +36,7 @@ namespace DePoisty.RestaurantFoodsService.Persistence.Data.Repositories
 
         public async Task<RepositoryResult> UpdateAsync(Category entity)
         {
-            var oldEntity = await _context.Categories.FirstOrDefaultAsync(c =>  c.Id == entity.Id);
+            var oldEntity = await _context.Categories.FirstOrDefaultAsync(c => c.Id == entity.Id);
             if (oldEntity == null)
             {
                 return RepositoryResult.Failure("Cannot find the entity to update");
