@@ -48,8 +48,11 @@ namespace DePoisty.ParserService.Application.Services
 
                         if (parser == null) return;
 
-                        var restaurantInfo = await parser.ParseRestaurantInfoAsync(restaurant.Website);
-                        var dishesInfos = await parser.ParseDishInfosAsync(restaurant.Website);
+                        var restaurantInfoTask = parser.ParseRestaurantInfoAsync(restaurant.Website);
+                        var dishesInfosTask = parser.ParseDishInfosAsync(restaurant.Website);
+
+                        var restaurantInfo = await restaurantInfoTask;
+                        var dishesInfos = await dishesInfosTask;
 
                         var updateRestaurant = new UpdateRestaurantDto
                         {
