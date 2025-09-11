@@ -1,5 +1,5 @@
 ﻿using DePoisty.RestaurantFoodsService.Core.Common;
-using DePoisty.RestaurantFoodsService.Core.Interfaces;
+using DePoisty.RestaurantFoodsService.Core.Interfaces.Repositories;
 using DePoisty.RestaurantFoodsService.Core.Models;
 using DePoisty.RestaurantFoodsService.Core.Specifications;
 using Microsoft.EntityFrameworkCore;
@@ -35,7 +35,7 @@ namespace DePoisty.RestaurantFoodsService.Persistence.Data.Repositories
             return await _context.Restaurants.FirstOrDefaultAsync(r => r.Id == id);
         }
 
-        public async Task<List<Restaurant>> GetBySpecificationAsync(ISpecification<Restaurant> specification)
+        public async Task<IEnumerable<Restaurant>> GetBySpecificationAsync(ISpecification<Restaurant> specification)
         {
             IQueryable<Restaurant> query = _context.Restaurants;
 

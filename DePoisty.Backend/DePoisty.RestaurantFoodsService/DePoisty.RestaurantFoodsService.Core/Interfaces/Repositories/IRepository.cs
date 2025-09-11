@@ -1,6 +1,8 @@
 ﻿using DePoisty.RestaurantFoodsService.Core.Common;
+using DePoisty.RestaurantFoodsService.Core.Models;
+using DePoisty.RestaurantFoodsService.Core.Specifications;
 
-namespace DePoisty.RestaurantFoodsService.Core.Interfaces
+namespace DePoisty.RestaurantFoodsService.Core.Interfaces.Repositories
 {
     public interface IRepository<T>
     {

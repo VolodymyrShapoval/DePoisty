@@ -1,11 +1,11 @@
 ﻿using DePoisty.RestaurantFoodsService.Core.Common;
-using DePoisty.RestaurantFoodsService.Core.Interfaces;
+using DePoisty.RestaurantFoodsService.Core.Interfaces.Repositories;
 using DePoisty.RestaurantFoodsService.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DePoisty.RestaurantFoodsService.Persistence.Data.Repositories
 {
-    public class RestaurantMetaRepository : IRepository<RestaurantMeta>
+    public class RestaurantMetaRepository : IRestaurantMetaRepository
     {
         private readonly AppDbContext _context;
         public RestaurantMetaRepository(AppDbContext context) => _context = context;
