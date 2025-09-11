@@ -8,8 +8,10 @@
 
   <ItemGroup>
     <Folder Include="Services\" />
-    <Folder Include="DTOs\" />
-    <Folder Include="Interfaces\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DePoisty.RestaurantFoodsService.Core\DePoisty.RestaurantFoodsService.Core.csproj" />
   </ItemGroup>
 
 </Project>

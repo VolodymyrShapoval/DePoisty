@@ -1,8 +1,8 @@
 ﻿using DePoisty.RestaurantFoodsService.Core.Common;
 
-namespace DePoisty.RestaurantFoodsService.Core.Interfaces.Repositories
+namespace DePoisty.RestaurantFoodsService.Application.Interfaces
 {
-    public interface IRepository<T>
+    public interface ICRUDService<T1, T2, T3, T4>
     {
         Task<T?> GetByIdAsync(Guid id);
         Task<IEnumerable<T>> GetAllAsync();

@@ -10,18 +10,18 @@ namespace DePoisty.RestaurantFoodsService.Persistence.Data.Repositories
         private readonly AppDbContext _context;
         public DishRepository(AppDbContext context) => _context = context;
 
-        public async Task<RepositoryResult> AddAsync(Dish entity)
+        public async Task<OperationResult> AddAsync(Dish entity)
         {
             await _context.Dishes.AddAsync(entity);
             var result = await _context.SaveChangesAsync();
-            return result > 0 ? RepositoryResult.Success() : RepositoryResult.Failure("Cannot add the entity to DB");
+            return result > 0 ? OperationResult.Success() : OperationResult.Failure("Cannot add the entity to DB");
         }
 
-        public async Task<RepositoryResult> DeleteAsync(Dish entity)
+        public async Task<OperationResult> DeleteAsync(Dish entity)
         {
             _context.Dishes.Remove(entity);
             var result = await _context.SaveChangesAsync();
-            return result > 0 ? RepositoryResult.Success() : RepositoryResult.Failure("Cannot delete the entity from DB");
+            return result > 0 ? OperationResult.Success() : OperationResult.Failure("Cannot delete the entity from DB");
         }
 
         public async Task<IEnumerable<Dish>> GetAllAsync()
@@ -34,17 +34,17 @@ namespace DePoisty.RestaurantFoodsService.Persistence.Data.Repositories
             return await _context.Dishes.FirstOrDefaultAsync(d => d.Id == id);
         }
 
-        public async Task<RepositoryResult> UpdateAsync(Dish entity)
+        public async Task<OperationResult> UpdateAsync(Dish entity)
         {
             var oldEntity = await _context.Dishes.FirstOrDefaultAsync(d => d.Id == entity.Id);
             if (oldEntity == null)
             {
-                return RepositoryResult.Failure("Cannot find the entity to update");
+                return OperationResult.Failure("Cannot find the entity to update");
             }
 
             _context.Dishes.Update(entity);
             var result = await _context.SaveChangesAsync();
-            return result > 0 ? RepositoryResult.Success() : RepositoryResult.Failure("Cannot update the entity");
+            return result > 0 ? OperationResult.Success() : OperationResult.Failure("Cannot update the entity");
         }
     }
 }
