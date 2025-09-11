@@ -1,11 +1,12 @@
 ﻿using DePoisty.RestaurantFoodsService.Core.Common;
 using DePoisty.RestaurantFoodsService.Core.Interfaces;
 using DePoisty.RestaurantFoodsService.Core.Models;
+using DePoisty.RestaurantFoodsService.Core.Specifications;
 using Microsoft.EntityFrameworkCore;
 
 namespace DePoisty.RestaurantFoodsService.Persistence.Data.Repositories
 {
-    public class RestaurantRepository : IRepository<Restaurant>
+    public class RestaurantRepository : IRestaurantRepository
     {
         private readonly AppDbContext _context;
         public RestaurantRepository(AppDbContext context) => _context = context;
@@ -32,6 +33,19 @@ namespace DePoisty.RestaurantFoodsService.Persistence.Data.Repositories
         public async Task<Restaurant?> GetByIdAsync(Guid id)
         {
             return await _context.Restaurants.FirstOrDefaultAsync(r => r.Id == id);
+        }
+
+        public async Task<List<Restaurant>> GetBySpecificationAsync(ISpecification<Restaurant> specification)
+        {
+            IQueryable<Restaurant> query = _context.Restaurants;
+
+            if(specification.Criteria != null)
+            {
+                query = query.Where(specification.Criteria);
+            }
+
+            query = specification.Includes.Aggregate(query, (current, include) => current.Include(include));
+            return await query.ToListAsync();
         }
 
         public async Task<RepositoryResult> UpdateAsync(Restaurant entity)
