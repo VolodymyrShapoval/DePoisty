@@ -44,7 +44,7 @@ namespace DePoisty.RestaurantFoodsService.Persistence.Data.Repositories
 
             _context.Restaurants.Update(entity);
             var result = await _context.SaveChangesAsync();
-            return result > 0 ? RepositoryResult.Success() : RepositoryResult.Failure("Cannot delete the entity to DB");
+            return result > 0 ? RepositoryResult.Success() : RepositoryResult.Failure("Cannot update the entity to DB");
         }
     }
 }
