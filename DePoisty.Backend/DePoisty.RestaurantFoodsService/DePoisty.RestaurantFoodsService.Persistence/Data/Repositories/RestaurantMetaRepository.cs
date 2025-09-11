@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DePoisty.RestaurantFoodsService.Persistence.Data.Repositories
 {
-    class RestaurantMetaRepository : IRepository<RestaurantMeta>
+    public class RestaurantMetaRepository : IRepository<RestaurantMeta>
     {
         private readonly AppDbContext _context;
         public RestaurantMetaRepository(AppDbContext context) => _context = context;
