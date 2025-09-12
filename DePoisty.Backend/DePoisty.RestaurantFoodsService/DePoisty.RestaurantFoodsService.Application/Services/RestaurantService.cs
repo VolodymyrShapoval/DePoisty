@@ -50,13 +50,13 @@ namespace DePoisty.RestaurantFoodsService.Application.Services
         public async Task<RestaurantDTO?> GetByIdAsync(Guid id)
         {
             Restaurant? restaurant = await _repository.GetByIdAsync(id);
-            return _mapper.Map<RestaurantDTO>(restaurant);
+            return _mapper.Map<RestaurantDTO?>(restaurant);
         }
 
         public async Task<RestaurantWithMetaDTO?> GetWithMetaByIdAsync(Guid id)
         {
             Restaurant? restaurant = await _repository.GetBySpecificationAndIdAsync(id, new RestaurantWithMetaSpec());
-            return _mapper.Map<RestaurantWithMetaDTO>(restaurant);
+            return _mapper.Map<RestaurantWithMetaDTO?>(restaurant);
         }
 
         public async Task<OperationResult> UpdateAsync(Guid id, UpdateRestaurantDTO updateRestaurantDTO)
@@ -66,6 +66,7 @@ namespace DePoisty.RestaurantFoodsService.Application.Services
             {
                 return OperationResult.Failure("Restaurant hasn't been found");
             }
+
             _mapper.Map(updateRestaurantDTO, restaurant);
             return await _repository.UpdateAsync(restaurant);
         }

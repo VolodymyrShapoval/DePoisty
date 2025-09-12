@@ -7,8 +7,8 @@ namespace DePoisty.RestaurantFoodsService.Application.Interfaces
     {
         Task<RestaurantMetaDTO?> GetByIdAsync(Guid id);
         Task<IEnumerable<RestaurantMetaDTO>> GetAllAsync();
-        Task<OperationResult> AddAsync(CreateRestaurantMetaDTO entity);
-        Task<OperationResult> UpdateAsync(Guid id, UpdateRestaurantMetaDTO entity);
+        Task<OperationResult> AddAsync(CreateRestaurantMetaDTO createRestaurantMetaDTO);
+        Task<OperationResult> UpdateAsync(Guid id, UpdateRestaurantMetaDTO updateRestaurantMetaDTO);
         Task<OperationResult> DeleteAsync(Guid id);
     }
 }
