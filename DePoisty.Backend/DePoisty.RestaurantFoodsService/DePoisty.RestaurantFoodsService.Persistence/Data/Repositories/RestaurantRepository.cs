@@ -35,6 +35,19 @@ namespace DePoisty.RestaurantFoodsService.Persistence.Data.Repositories
             return await _context.Restaurants.FirstOrDefaultAsync(r => r.Id == id);
         }
 
+        public async Task<Restaurant?> GetBySpecificationAndIdAsync(Guid id, ISpecification<Restaurant> specification)
+        {
+            IQueryable<Restaurant> query = _context.Restaurants;
+
+            if (specification.Criteria != null)
+            {
+                query = query.Where(specification.Criteria);
+            }
+
+            query = specification.Includes.Aggregate(query, (current, include) => current.Include(include));
+            return await query.FirstOrDefaultAsync(r => r.Id == id);
+        }
+
         public async Task<IEnumerable<Restaurant>> GetBySpecificationAsync(ISpecification<Restaurant> specification)
         {
             IQueryable<Restaurant> query = _context.Restaurants;
