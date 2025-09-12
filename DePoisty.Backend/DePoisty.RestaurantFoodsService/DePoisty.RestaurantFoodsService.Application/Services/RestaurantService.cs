@@ -44,7 +44,8 @@ namespace DePoisty.RestaurantFoodsService.Application.Services
 
         public async Task<IEnumerable<RestaurantWithMetaDTO>> GetAllWithMetasAsync()
         {
-            return _mapper.Map<IEnumerable<RestaurantWithMetaDTO>>(await _repository.GetBySpecificationAsync(new RestaurantWithMetaSpec()));
+            IEnumerable<Restaurant> restaurants = await _repository.GetBySpecificationAsync(new RestaurantWithMetaSpec());
+            return _mapper.Map<IEnumerable<RestaurantWithMetaDTO>>(restaurants);
         }
 
         public async Task<RestaurantDTO?> GetByIdAsync(Guid id)
