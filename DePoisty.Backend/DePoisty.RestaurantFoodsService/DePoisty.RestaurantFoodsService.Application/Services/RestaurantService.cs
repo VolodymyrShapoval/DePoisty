@@ -22,7 +22,6 @@ namespace DePoisty.RestaurantFoodsService.Application.Services
         public async Task<OperationResult> AddAsync(CreateRestaurantDTO createRestaurantDTO)
         {
             Restaurant restaurant = _mapper.Map<Restaurant>(createRestaurantDTO);
-            restaurant.Id = Guid.NewGuid();
             return await _repository.AddAsync(restaurant);
         }
 
