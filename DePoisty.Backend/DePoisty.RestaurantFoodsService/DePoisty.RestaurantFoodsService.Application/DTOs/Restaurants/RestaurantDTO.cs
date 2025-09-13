@@ -1,6 +1,4 @@
-﻿using DePoisty.RestaurantFoodsService.Core.Models;
-
-namespace DePoisty.RestaurantFoodsService.Application.DTOs.Restaurants
+﻿namespace DePoisty.RestaurantFoodsService.Application.DTOs.Restaurants
 {
     public class RestaurantDTO
     {
