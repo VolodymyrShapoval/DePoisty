@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using DePoisty.RestaurantFoodsService.Application.DTOs.Categories;
-using DePoisty.RestaurantFoodsService.Application.DTOs.Dishes;
 using DePoisty.RestaurantFoodsService.Core.Models;
 
 namespace DePoisty.RestaurantFoodsService.Application.Mappers
