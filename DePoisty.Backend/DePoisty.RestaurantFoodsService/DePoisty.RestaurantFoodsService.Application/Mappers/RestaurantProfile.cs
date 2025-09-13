@@ -9,6 +9,7 @@ namespace DePoisty.RestaurantFoodsService.Application.Mappers
         public RestaurantProfile()
         {
             CreateMap<Restaurant, RestaurantDTO>();
+            CreateMap<Restaurant, RestaurantWithMetaDTO>();
             CreateMap<CreateRestaurantDTO, Restaurant>();
             CreateMap<UpdateRestaurantDTO, Restaurant>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore())
