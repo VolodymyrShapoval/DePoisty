@@ -1,6 +1,4 @@
-﻿using DePoisty.RestaurantFoodsService.Core.Models;
-
-namespace DePoisty.RestaurantFoodsService.Application.DTOs.Categories
+﻿namespace DePoisty.RestaurantFoodsService.Application.DTOs.Categories
 {
     public class UpdateCategoryDTO
     {
