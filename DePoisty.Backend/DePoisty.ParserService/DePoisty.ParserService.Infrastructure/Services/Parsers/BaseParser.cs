@@ -21,14 +21,14 @@ namespace DePoisty.ParserService.Infrastructure.Services.Parsers
 
         public async Task<IEnumerable<DishInfo>> ParseDishInfosAsync(string url)
         {
-            if (!string.IsNullOrEmpty(Url) && Url != url) throw new ArgumentException("Different url of restaurant website");
+            if (!string.IsNullOrEmpty(Url) && Url != url) throw new ArgumentException("URL differs from previously set restaurant website URL");
             Url = url;
             return await ParseRestaurantDishesAsync();
         }
 
         public async Task<RestaurantInfo> ParseRestaurantInfoAsync(string url)
         {
-            if (!string.IsNullOrEmpty(Url) && Url != url) throw new ArgumentException("Different url of restaurant website");
+            if (!string.IsNullOrEmpty(Url) && Url != url) throw new ArgumentException("URL differs from previously set restaurant website URL");
             Url = url;
             return new RestaurantInfo
             {

@@ -46,7 +46,7 @@ namespace DePoisty.ParserService.Infrastructure.Selenium
                 return false;
             }
         }
-        public void AssertElementIsVisible(string locator)
+        public async Task AssertElementIsVisible(string locator)
         {
             for (int second = 0; second < Constants.TimeoutSeconds; second++)
             {
@@ -55,75 +55,71 @@ namespace DePoisty.ParserService.Infrastructure.Selenium
                     return;
                 }
 
-                Thread.Sleep(1000);
+                await Task.Delay(1000);
             }
 
-            throw new SeleniumParsingException("Element is not visible");
+            throw new SeleniumParsingException($"Element with locator '{locator}' is not visible after {Constants.TimeoutSeconds} seconds");
         }
-        public void Click(string locator)
+        public async Task Click(string locator)
         {
             try
             {
-                AssertElementIsVisible(locator);
+                await AssertElementIsVisible(locator);
                 _driver.FindElement(By.XPath(locator))?.Click();
+            }
+            catch (SeleniumParsingException ex)
+            {
+                throw new SeleniumParsingException($"Couldn't click on the element `{locator}`! Error message: {ex.Message}");
             }
             catch (Exception ex)
             {
-                switch (ex)
-                {
-                    case SeleniumParsingException _:
-                        throw new SeleniumParsingException($"Couldn't click on the element `{locator}`! Error message: {ex.Message}");
-                    default:
-                        throw new Exception($"Couldn't click on the element `{locator}`! Unknown error with message: {ex.Message}");
-                }
+                throw new Exception($"Couldn't click on the element `{locator}`! Unknown error with message: {ex.Message}");
             }
         }
-        public void Select(string selectLocator, string optionText)
+        public async Task Select(string selectLocator, string optionText)
         {
             try
             {
-                AssertElementIsVisible(selectLocator);
+                await AssertElementIsVisible(selectLocator);
                 var selectElement = new SelectElement(_driver.FindElement(By.XPath(selectLocator)));
                 selectElement.SelectByText(optionText);
             }
+            catch (SeleniumParsingException ex)
+            {
+                throw new SeleniumParsingException($"Couldn't select the element `{selectLocator}` with option '{optionText}'! Error message: {ex.Message}");
+
+            }
             catch (Exception ex)
             {
-                switch (ex)
-                {
-                    case SeleniumParsingException _:
-                        throw new SeleniumParsingException($"Couldn't select the element `{selectLocator}` with option '{optionText}'! Error message: {ex.Message}");
-                    default:
-                        throw new Exception($"Couldn't select the element `{selectLocator}` with option '{optionText}'! Unknown error with message: {ex.Message}");
-                }
+                throw new Exception($"Couldn't select the element `{selectLocator}` with option '{optionText}'! Unknown error with message: {ex.Message}");
+
             }
         }
-        public void SelectCustom(string dropdownLocator, string optionLocator)
+        public async Task SelectCustom(string dropdownLocator, string optionLocator)
         {
             try
             {
 
-                AssertElementIsVisible(dropdownLocator);
+                await AssertElementIsVisible(dropdownLocator);
                 _driver.FindElement(By.XPath(dropdownLocator)).Click();
 
-                AssertElementIsVisible(optionLocator);
+                await AssertElementIsVisible(optionLocator);
                 _driver.FindElement(By.XPath(optionLocator)).Click();
+            }
+            catch (SeleniumParsingException ex)
+            {
+                throw new SeleniumParsingException($"Couldn't execute custom selection on the element `{dropdownLocator}` with option locator '{optionLocator}'! Error message: {ex.Message}");
             }
             catch (Exception ex)
             {
-                switch (ex)
-                {
-                    case SeleniumParsingException _:
-                        throw new SeleniumParsingException($"Couldn't execute custom selection on the element `{dropdownLocator}` with option locator '{optionLocator}'! Error message: {ex.Message}");
-                    default:
-                        throw new Exception($"Couldn't execute custom selection on the element `{dropdownLocator}` with option locator '{optionLocator}'! Unknown error with message: {ex.Message}");
-                }
+                throw new Exception($"Couldn't execute custom selection on the element `{dropdownLocator}` with option locator '{optionLocator}'! Unknown error with message: {ex.Message}");
             }
         }
-        public void ScrollToElement(string locator)
+        public async Task ScrollToElement(string locator)
         {
             try
             {
-                AssertElementIsVisible(locator);
+                await AssertElementIsVisible(locator);
                 var element = _driver.FindElement(By.XPath(locator));
                 ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].scrollIntoView(true);", element);
             }
