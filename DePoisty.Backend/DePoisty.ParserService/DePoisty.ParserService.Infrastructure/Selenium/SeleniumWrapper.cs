@@ -1,6 +1,5 @@
 ﻿using DePoisty.ParserService.Infrastructure.Common;
 using OpenQA.Selenium;
-using OpenQA.Selenium.BiDi.BrowsingContext;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
@@ -125,11 +124,7 @@ namespace DePoisty.ParserService.Infrastructure.Selenium
             }
             catch (Exception ex)
             {
-                switch (ex)
-                {
-                    default:
-                        throw new Exception($"Couldn't scroll to the element `{locator}`! Unknown error with message: {ex.Message}");
-                }
+                throw new Exception($"Couldn't scroll to the element `{locator}`! Unknown error with message: {ex.Message}");
             }
         }
 
