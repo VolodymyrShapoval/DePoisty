@@ -36,17 +36,25 @@ namespace DePoisty.RestaurantFoodsService.Application.Services
 
         public async Task<IEnumerable<DishDTO>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            IEnumerable<Dish> dishes = await _repository.GetAllAsync();
+            return _mapper.Map<IEnumerable<DishDTO>>(dishes);
         }
 
         public async Task<DishDTO?> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            Dish? dish = await _repository.GetByIdAsync(id);
+            return _mapper.Map<DishDTO>(dish);
         }
 
         public async Task<OperationResult> UpdateAsync(Guid id, UpdateDishDTO updateDishDTO)
         {
-            throw new NotImplementedException();
+            Dish? dish = await _repository.GetByIdAsync(id);
+            if (dish == null)
+            {
+                return OperationResult.Failure("Dish hasn't been found");
+            }
+            _mapper.Map(updateDishDTO, dish);
+            return await _repository.UpdateAsync(dish);
         }
     }
 }
