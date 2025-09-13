@@ -1,5 +1,4 @@
 ﻿using DePoisty.RestaurantFoodsService.Application.DTOs.RestaurantMetas;
-using DePoisty.RestaurantFoodsService.Core.Models;
 
 namespace DePoisty.RestaurantFoodsService.Application.DTOs.Restaurants
 {
