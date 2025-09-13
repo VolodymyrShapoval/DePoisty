@@ -43,7 +43,7 @@ namespace DePoisty.RestaurantFoodsService.Application.Services
         public async Task<DishDTO?> GetByIdAsync(Guid id)
         {
             Dish? dish = await _repository.GetByIdAsync(id);
-            return _mapper.Map<DishDTO>(dish);
+            return _mapper.Map<DishDTO?>(dish);
         }
 
         public async Task<OperationResult> UpdateAsync(Guid id, UpdateDishDTO updateDishDTO)
